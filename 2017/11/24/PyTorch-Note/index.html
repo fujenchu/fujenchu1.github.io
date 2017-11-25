@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/11/24/PyTorch-Note/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="This note is to put a simple example code from official site for later reference.">
-<meta property="og:updated_time" content="2017-11-25T09:06:38.527Z">
+<meta property="og:updated_time" content="2017-11-25T09:07:33.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch Note">
 <meta name="twitter:description" content="This note is to put a simple example code from official site for later reference.">
@@ -90,7 +90,7 @@
 <h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><h3 id="structures"><a href="#structures" class="headerlink" title="structures"></a>structures</h3><p>The code is divided into 4 parts: (1) define network, (2) define loss, (3) data loading and (4) training loop<br>Interested reader is encouraged to reference <a href="http://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html" target="_blank" rel="noopener">original explanation</a>, here I only put some important notes for better understanding.</p>
 <h3 id="import"><a href="#import" class="headerlink" title="import"></a>import</h3><ul>
 <li><code>torch.nn</code> include layers as <code>module</code>. For example <code>nn.Conv2d(3, 6, 5)</code>, <code>nn.MaxPool2d(2, stride=2)</code>.   </li>
-<li><code>torch.nn.functional</code> include function.<br>Both <code>torch.nn</code> and <code>torch.nn.functional</code> have <code>relu</code> but one is a module and the other is a function.</li>
+<li><code>torch.nn.functional</code> include functions.<br>Both <code>torch.nn</code> and <code>torch.nn.functional</code> have <code>RELU</code> but one is a module and the other is a function.</li>
 </ul>
 <h3 id="ways-to-define-network"><a href="#ways-to-define-network" class="headerlink" title="ways to define network"></a>ways to define network</h3><p>Two main ways to define a <code>network</code>: (1) <code>nn.Sequential()</code> and (2) <code>nn.Module</code> inherited class</p>
 <ul>
@@ -119,7 +119,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/24/PyTorch-Note/" data-id="cjaf3yi0c0000pxp0tokpdi14" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/24/PyTorch-Note/" data-id="cjaf44i630000x5p0827negmw" class="article-share-link">Share</a>
       
       
     </footer>
