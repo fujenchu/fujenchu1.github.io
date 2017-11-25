@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/11/24/PyTorch-Note/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="This note is to put a simple example code from official site for later reference.">
-<meta property="og:updated_time" content="2017-11-25T09:07:33.055Z">
+<meta property="og:updated_time" content="2017-11-25T09:14:51.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch Note">
 <meta name="twitter:description" content="This note is to put a simple example code from official site for later reference.">
@@ -97,29 +97,30 @@
 <li><p><code>nn.Sequential()</code> directly puts <code>module</code> as sequence for use: </p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net = nn.Sequential(nn.Linear(<span class="number">2</span>, <span class="number">2</span>), </span><br><span class="line">                    nn.Linear(<span class="number">2</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><code>nn.Module</code> is able to re-define <code>forward()</code> for more flexible network.</p>
+<li><p><code>nn.Module</code> is able to re-define <code>forward()</code> for more flexible networks.</p>
 </li>
 </ul>
-<h3 id="loss-and-optim"><a href="#loss-and-optim" class="headerlink" title="loss and optim"></a>loss and optim</h3><p>PyTorch defines loss functions <a href="http://pytorch.org/docs/master/nn.html#loss-functions" target="_blank" rel="noopener">here</a>, such as <code>nn.L1Loss</code>, <code>nn.MSELoss</code>, <code>nn.CrossEntropyLoss</code> and <code>nn.NLLLoss</code>.<br>(the difference between <code>nn.CrossEntropyLoss</code> and <code>nn.NLLLoss</code> is the former take the last layer without softmax)</p>
+<h3 id="loss-and-optim"><a href="#loss-and-optim" class="headerlink" title="loss and optim"></a>loss and optim</h3><p>PyTorch defines loss functions <a href="http://pytorch.org/docs/master/nn.html#loss-functions" target="_blank" rel="noopener">here</a>, such as <code>nn.L1Loss</code>, <code>nn.MSELoss</code>, <code>nn.CrossEntropyLoss</code> and <code>nn.NLLLoss</code>.<br>(the difference between <code>nn.CrossEntropyLoss</code> and <code>nn.NLLLoss</code> is the former takes the last layer without softmax)</p>
 <p>PyTorch defines optimizers <a href="http://pytorch.org/docs/master/optim.html" target="_blank" rel="noopener">here</a>, such as <code>optim.Adam</code> and <code>optim.SGD</code>. One can also use <code>optim.lr_scheduler</code> to adjust lr.<br>example:<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scheduler = StepLR(optimizer, <span class="attribute">step_size</span>=100, <span class="attribute">gamma</span>=0.1)</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(100):</span><br><span class="line">     scheduler.<span class="keyword">step</span>()</span><br><span class="line">     train(<span class="built_in">..</span>.)</span><br><span class="line">     validate(<span class="built_in">..</span>.)</span><br></pre></td></tr></table></figure></p>
-<p>more different schedulers and examples can be found <a href="http://pytorch.org/docs/master/optim.html" target="_blank" rel="noopener">here</a> in the bottom.</p>
+<p>more different schedulers and examples can be found <a href="http://pytorch.org/docs/master/optim.html" target="_blank" rel="noopener">here</a> at the bottom.</p>
 <h3 id="variables"><a href="#variables" class="headerlink" title="variables"></a>variables</h3><ul>
 <li>The input and output of a network are variables, hence samples (inputs and labels) has to be converted to variables before sent to networks.    </li>
 <li>Tutorial <a href="http://pytorch.org/tutorials/beginner/blitz/neural_networks_tutorial.html" target="_blank" rel="noopener">here</a> provides a simple example to clearly show <code>variable</code> and its gradients.</li>
 <li>A variable’s gradient has to be cleared before next iteration so <code>optimizer.zero_grad()</code> is needed</li>
 <li><code>loss</code> obtains outputs from criterion and <code>loss.backward()</code> calculates gradients with default values. <code>optimizer.step()</code> computes the updates with gradients.</li>
 </ul>
-<h3 id="dataloader"><a href="#dataloader" class="headerlink" title="dataloader"></a>dataloader</h3><p>You can use dataset in three step: (1) dataset, (2) data loader (3) data transform</p>
+<h3 id="dataloader"><a href="#dataloader" class="headerlink" title="dataloader"></a>dataloader</h3><p>You can use dataset in three step: (1) data transform (2) dataset, (3) data loader </p>
 <ul>
-<li><code>transforms.Compose()</code> composes a list of transforms. <code>transforms</code> can be used with <code>torchvision.datasets.CIFAR10</code>, <code>torchvision.datasets.MNIST</code> or <code>torchvision.datasets.ImageLoader</code> (ImageLoader is very useful!)</li>
-<li>Once datasets is set, <code>torch.utils.data.DataLoader</code> can be used for parallelly loading data. </li>
-<li>If you have a list of image names in a txt file, you may consider to use <code>ListDataset</code> with <code>pytorch/tnt</code>.<br>One might also consider to use <code>Engine</code> to efficiently construct a network. </li>
+<li>data transform: <code>transforms.Compose()</code> composes a list of transforms. </li>
+<li>dataset: <code>transforms</code> can be used with <code>torchvision.datasets.CIFAR10</code>, <code>torchvision.datasets.MNIST</code> or <code>torchvision.datasets.ImageLoader</code> (ImageLoader is very useful!)</li>
+<li>data loader: Once datasets is set, <code>torch.utils.data.DataLoader</code> can be used for parallelly loading data. </li>
+<li>note: If you have a list of image names in a txt file, you may consider to use <code>ListDataset</code> with <code>pytorch/tnt</code> <a href="https://github.com/pytorch/tnt" target="_blank" rel="noopener">here</a>.<br>One might also consider to use <code>Engine</code> to efficiently construct a network. </li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/24/PyTorch-Note/" data-id="cjaf44i630000x5p0827negmw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/24/PyTorch-Note/" data-id="cjaf44mvv0000xxp0qatzthkt" class="article-share-link">Share</a>
       
       
     </footer>
